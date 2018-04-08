@@ -1,5 +1,6 @@
 " ~/.vimrc
 " Harrison Ku
+" Original Author: Lisa McCutcheon
 " April 6, 2018
 
 " **************************************
@@ -40,7 +41,7 @@ au BufRead,BufNewFile *.s set tabstop=8
 syntax on
 
 " Set colorscheme (scroll by using :colorscheme + Tab)
-colorscheme torte
+colorscheme industry
 
 " For switching between many opened file by using ctrl+l or ctrl+h
 map <C-J> :next <CR>
@@ -55,13 +56,13 @@ set colorcolumn=81		" highlight 80th column
 match Error /\%81v.\+/		" highlight text over 80 chars
 set textwidth=80		" wraps lines at 80 chars
 
-" Auto file header insertion using F9 key
+" Auto file header insertion using F7 key
 function FileHeading()
           let s:line=line(".")
           call setline (s:line,   "/*")
           call append  (s:line,   " * Filename: " .expand("%"))
           call append  (s:line+1, " * Author: TODO")
-          call append  (s:line+2, " * Userid: cs30xTODO")
+          call append  (s:line+2, " * Userid: TODO")
           call append  (s:line+3, " * Description: TODO")
           call append  (s:line+4, " * Date: " .strftime("%b %d %Y"))
           call append  (s:line+5, " * Sources of Help: TODO")
@@ -69,4 +70,44 @@ function FileHeading()
           unlet s:line
 endfunction
   
-imap <F9> <ESC>mz:execute FileHeading()<CR>
+imap <F7> <ESC>mz:execute FileHeading()<CR>
+
+" Auto function header insertion using F8 key
+function FuncHeading()
+          let s:line=line(".")
+          call setline (s:line,   "/*")
+          call append  (s:line,   " * Function Name: TODO")
+          call append  (s:line+1, " * Function Prototype: TODO")
+          call append  (s:line+2, " * Description: TODO")
+          call append  (s:line+3, " * Parameters: TODO")
+          call append  (s:line+4, " * Side Effects: TODO")
+          call append  (s:line+5, " * Error Conditions: TODO")
+	  call append  (s:line+6, " * Return Value: TODO")
+          call append  (s:line+7, " */")
+          unlet s:line
+endfunction
+  
+imap <F8> <ESC>mz:execute FuncHeading()<CR>
+
+" Auto assembly routine header using F9 key
+function AssemblyHeading()
+          let s:line=line(".")
+          call setline (s:line,   "/*")
+          call append  (s:line,   " * Function Name: TODO")
+          call append  (s:line+1, " * Function Prototype: TODO")
+          call append  (s:line+2, " * Description: TODO")
+          call append  (s:line+3, " * Parameters: TODO")
+          call append  (s:line+4, " * Side Effects: TODO")
+          call append  (s:line+5, " * Error Conditions: TODO")
+	  call append  (s:line+6, " * Return Value: TODO")
+	  call append  (s:line+7, " * ")
+	  call append  (s:line+8, " * Registers used: TODO")
+	  call append  (s:line+9, " * 	<register> - <use> -- <description>")
+	  call append  (s:line+10, " * ")
+	  call append  (s:line+11, " * Local variables: TODO")
+	  call append  (s:line+12, " * 	<name> - <fp offset> -- <description>")
+          unlet s:line
+endfunction
+  
+imap <F9> <ESC>mz:execute AssemblyHeading()<CR>
+
